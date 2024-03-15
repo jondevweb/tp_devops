@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html/
+
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: nanasite
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db

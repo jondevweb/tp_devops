@@ -1,0 +1,24 @@
+stages:
+  - build
+  - test
+  - deploy
+
+#Etape de construction de l'image Docker
+build:
+  stage: build # Indique que cette tâche fait partie de l'étape "build"
+  script:
+    - docker build
+
+
+test:
+  stage: test
+  image: php:7.4
+  script:
+    - php -l /var/www/html/index.php
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Déploiement de l'application..."
+  only:
+    - master
